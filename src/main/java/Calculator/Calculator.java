@@ -1,13 +1,14 @@
 package Calculator;
 
+import java.security.AlgorithmConstraints;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Calculator {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String answer = "";
+        String operation = "";
         int result;
         int numA = 0;
         int numB = 0;
@@ -17,38 +18,38 @@ public class Calculator {
             System.out.println("Введите второе число: ");
             numB = scanner.nextInt();
             System.out.println("Введите действие в формате '+', '-', '/', или '*' ");
-            answer = scanner.next();
-        } catch (InputMismatchException e){
+            operation = scanner.next();
+        } catch (InputMismatchException e) {
             System.out.println("Введены неправильные значения.");
         }
         try {
-            switch (answer) {
+            switch (operation) {
                 case "+" -> {
                     result = sumTesting(numA, numB);
-                    System.out.println("Ответ: " + numA + " " + answer + " " + numB + " = " + result);
+                    System.out.println("Ответ: " + numA + " " + operation + " " + numB + " = " + result);
                 }
                 case "-" -> {
                     result = minusTesting(numA, numB);
-                    System.out.println("Ответ: " + numA + " " + answer + " " + numB + " = " + result);
+                    System.out.println("Ответ: " + numA + " " + operation + " " + numB + " = " + result);
                 }
                 case "/" -> {
                     result = divideTesting(numA, numB);
-                    System.out.println("Ответ: " + numA + " " + answer + " " + numB + " = " + result);
+                    System.out.println("Ответ: " + numA + " " + operation + " " + numB + " = " + result);
                 }
                 case "*" -> {
                     result = multiplyTesting(numA, numB);
-                    System.out.println("Ответ: " + numA + " " + answer + " " + numB + " = " + result);
+                    System.out.println("Ответ: " + numA + " " + operation + " " + numB + " = " + result);
                 }
             }
-        } catch (ArithmeticException e) {
-            System.out.println("Нельзя делить на ноль.");
+        } catch (Exception e) {
+            System.out.println("Ошибка:" + e);
         }
 
 
     }
 
-    public static int sumTesting(int two, int three) {
-        return two + three;
+    public static int sumTesting(int arg1, int arg2) {
+        return arg1 + arg2;
     }
 
     public static int minusTesting(int five, int six) {
@@ -56,10 +57,16 @@ public class Calculator {
     }
 
     public static int divideTesting(int eight, int nine) {
-        return eight / nine;
+        try {
+            return eight / nine;
+        } catch(ArithmeticException e) {
+            throw new ArithmeticException("Нельзя делить на ноль. " + e);
+        }
+
     }
 
-    public static int multiplyTesting(int eleven, int twelve) {
+    public static int multiplyTesting ( int eleven, int twelve){
         return eleven * twelve;
     }
 }
+

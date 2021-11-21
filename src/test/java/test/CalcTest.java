@@ -12,7 +12,7 @@ public class CalcTest {
                 {4, 2, 2},
                 {0, -1, 1},
                 {-1, 0, -1},
-                {10000, 9999, 1},
+                {2147483647, 0, 2147483647},
                 {5,2,3},
         };
     }
@@ -29,7 +29,7 @@ public class CalcTest {
     public Object[][] testEqualsDivide() {
         return new Object[][]{
                 {1, 2, 2},
-                {-1, 1, -1},
+                {0, 1, 0},
                 {10000, 100000, 10},
                 {0, 0, 2},
         };
